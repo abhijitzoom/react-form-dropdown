@@ -23,7 +23,10 @@ const lookup = {
 export default function App() {
   const [dataValue, setDataValue] = useState("default");
   const options = useMemo(() => lookup[dataValue], [dataValue]);
-
+  const [firstName, setFirst] = useState("");
+  const [middleName, setMiddle] = useState("");
+  const [lastName, setLast] = useState("");
+  const [age, setAge] = useState("");
   const onChange = ({ target: { value } }) => {
     setDataValue(value);
   };
@@ -31,19 +34,39 @@ export default function App() {
     <div className="App">
       <h1>React Test</h1>
       First Name :
-      <input type="text" name="firstName" />
+      <input
+        type="text"
+        name="firstName"
+        value={firstName}
+        onChange={(e) => setFirst(e.target.value)}
+      />
       <br />
       <br />
       Middle Name :
-      <input type="text" name="middleName" />
+      <input
+        type="text"
+        name="middleName"
+        value={middleName}
+        onChange={(e) => setMiddle(e.target.value)}
+      />
       <br />
       <br />
       Last Name :
-      <input type="text" name="lastName" />
+      <input
+        type="text"
+        name="lastName"
+        value={lastName}
+        onChange={(e) => setLast(e.target.value)}
+      />
       <br />
       <br />
       Age :
-      <input type="text" name="Age" />
+      <input
+        type="text"
+        name="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+      />
       <br />
       <br />
       Contry :
@@ -64,12 +87,11 @@ export default function App() {
       </select>
       <br />
       <br />
-      <input type="button" name="submit" value="register" />
+      <input type="button" name="submit" value="register" onClick={register} />
     </div>
   );
 
-  function contryChange(event) {
-    alert(event.id + " triggerred");
-    return;
+  function register(event) {
+    alert(firstName);
   }
 }
