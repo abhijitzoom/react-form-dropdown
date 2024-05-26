@@ -27,8 +27,11 @@ export default function App() {
   const [middleName, setMiddle] = useState("");
   const [lastName, setLast] = useState("");
   const [age, setAge] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
   const onChange = ({ target: { value } }) => {
     setDataValue(value);
+    setCountry(value);
   };
   return (
     <div className="App">
@@ -70,7 +73,7 @@ export default function App() {
       <br />
       <br />
       Contry :
-      <select name="contry" onChange={onChange}>
+      <select name="contry" value={country} onChange={onChange}>
         <option value="def">-Select Contry-</option>
         <option value="india">india</option>
         <option value="us">us</option>
@@ -78,7 +81,10 @@ export default function App() {
       <br />
       <br />
       State :
-      <select disabled={dataValue === "def"}>
+      <select
+        disabled={dataValue === "def"}
+        onChange={(e) => setState(e.target.value)}
+      >
         {[...lookup.default, ...options].map(({ id, text }) => (
           <option key={id} value={id}>
             {text}
@@ -92,6 +98,12 @@ export default function App() {
   );
 
   function register(event) {
-    alert(firstName);
+    let str = "\nFirst Name: " + firstName;
+    str = str + "\nMiddle Name : " + middleName;
+    str = str + " \nLast Name : " + lastName;
+    str = str + "\nAge : " + age;
+    str = str + " \nCountry : " + country;
+    str = str + "\nState : " + state;
+    alert(str);
   }
 }
